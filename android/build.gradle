@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        google()
+//        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+//        classpath 'com.android.tools.build:gradle:4.1.0'
+//        classpath 'com.google.gms:google-services:4.3.5'
+//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.1, 0.99.99]'
+//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.11.0'
+
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
